@@ -5,7 +5,7 @@ const operationButtons = document.querySelectorAll(".operation");
 const equalsButton = document.querySelector(".equals");
 const backspaceButton = document.querySelector(".backspace");
 
-let enterFirstNumber = null;
+let validNumberEntered = null;
 let allowableChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0","Enter", "/", "*", "-", "+", "=", "^", ".", "Backspace", "Delete"];
 let operatorChars = "+-*/^";
 
@@ -72,9 +72,9 @@ document.addEventListener("keydown", keyPressed);
 backspaceButton.addEventListener("click", removeRightChar);
 
 function numberPressed(e) {
-  if (enterFirstNumber !== true){
+  if (validNumberEntered !== true){
     display.textContent = "";
-    enterFirstNumber = true;
+    validNumberEntered = true;
   };  
   if (display.textContent.includes(".") && e.target.textContent==="."){
     return
@@ -92,7 +92,7 @@ function numberPressed(e) {
 
 function clearDisplay(){
   display.textContent = "0";
-  enterFirstNumber = false;
+  validNumberEntered = false;
   calculator.resetCalculator();
 }
 
@@ -106,21 +106,21 @@ function addOperation(e){
     calculator.operator = e.target.textContent;
   } else{
     if (e.key === "*"){
-      calculator.operator +="×";
+      calculator.operator ="×";
     } else if (e.key === "/"){
-      calculator.operator +="×";
+      calculator.operator ="×";
     } else {
       calculator.operator = e.key;
     }
   }
-  enterFirstNumber = false;
+  validNumberEntered = false;
 }
 
 function showResult() {
   if (!calculator.readyForCalculations()){
     display.textContent = "ERROR";
     calculator.resetCalculator();
-    enterFirstNumber = false;
+    validNumberEntered = false;
   } else{
     display.textContent = calculator.equals();
   }
@@ -130,7 +130,7 @@ function removeRightChar() {
   display.textContent = display.textContent.slice(0,-1);
   if (display.textContent === ""){
     display.textContent = "0";
-    enterFirstNumber = false;
+    validNumberEntered = false;
   }
 }
 
@@ -154,9 +154,9 @@ function keyPressed(e) {
     clearDisplay();
     return;
   }
-  if (enterFirstNumber !== true){
+  if (validNumberEntered !== true){
     display.textContent = "";
-    enterFirstNumber = true;
+    validNumberEntered = true;
   };  
   if (display.textContent.includes(".") && e.key==="."){
     return
