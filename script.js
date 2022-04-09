@@ -4,9 +4,11 @@ const clearButton = document.querySelector(".clear");
 const operationButtons = document.querySelectorAll(".operation");
 const equalsButton = document.querySelector(".equals");
 const backspaceButton = document.querySelector(".backspace");
+const percentButton = document.querySelector(".percent");
+const plusMinusButton = document.querySelector(".plusMinus");
 
 let validNumberEntered = null;
-let allowableChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0","Enter", "/", "*", "-", "+", "=", "^", ".", "Backspace", "Delete"];
+let allowableChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0","Enter", "/", "*", "-", "+", "=", "^", ".", "Backspace", "Delete","%"];
 let operatorChars = "+-*/^";
 
 const calculator = {
@@ -70,6 +72,8 @@ operationButtons.forEach(operation=>operation.addEventListener("click", addOpera
 equalsButton.addEventListener("click", showResult);
 document.addEventListener("keydown", keyPressed);
 backspaceButton.addEventListener("click", removeRightChar);
+percentButton.addEventListener("click", calculatePercent);
+plusMinusButton.addEventListener("click", changeSign);
 
 function numberPressed(e) {
   if (validNumberEntered !== true){
@@ -154,6 +158,10 @@ function keyPressed(e) {
     clearDisplay();
     return;
   }
+  if (e.key === "%"){
+    calculatePercent();
+    return;
+  }
   if (validNumberEntered !== true){
     display.textContent = "";
     validNumberEntered = true;
@@ -165,6 +173,26 @@ function keyPressed(e) {
     display.textContent = "0";
   };  
   display.textContent += e.key;
+  if (calculator.operator === null){
+    calculator.operandOne = +display.textContent;
+  } else{
+    calculator.operandTwo = +display.textContent;
+  }
+}
+
+function calculatePercent() {
+  display.textContent = +display.textContent/100;
+}
+
+function changeSign(){
+  if (display.textContent === "0"){
+    return;
+  }
+  if (display.textContent[0] !== "-"){
+    display.textContent = "-" + display.textContent
+  } else{
+    display.textContent = display.textContent.substring(1);
+  }
   if (calculator.operator === null){
     calculator.operandOne = +display.textContent;
   } else{
