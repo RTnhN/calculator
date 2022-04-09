@@ -3,11 +3,10 @@ const display = document.querySelector(".display");
 const clearButton = document.querySelector(".clear");
 const operationButtons = document.querySelectorAll(".operation");
 const equalsButton = document.querySelector(".equals");
-let enterFirstNumber = false;
+let enterFirstNumber = null;
+
 
 const calculator = {
-  enterFirstNumber:null,
-  enterSecondNumber:null,
   operandOne:null, 
   operandTwo:null,
   operator:null, 
@@ -41,39 +40,52 @@ const calculator = {
         break;
       case "÷":
         return this.divide();
-        break;
-    }
+        break;}
+
+  },
+  resetCalculator(){
+    this.operandOne = null;
+    this.operandTwo = null;
+    this.operator = null;
+    this.result = null;
   }
-    
-}
+} 
 
 clearButton.addEventListener("click", clearDisplay);
 numbers.forEach(number=>number.addEventListener("click", numberPressed));
 operationButtons.forEach(operation=>operation.addEventListener("click", addOperation));
-equalsButton.addEventListener("click", calculateResult);
+equalsButton.addEventListener("click", showResult);
 
 function numberPressed(e) {
-  if (enterFirstNumber === false){
+  if (enterFirstNumber !== true){
     display.textContent = "";
     enterFirstNumber = true;
   };  
-  let number = +e.target.textContent;
-  display.textContent += number;
+  display.textContent += +e.target.textContent;
+  if (calculator.operator === null){
+    calculator.operandOne = +display.textContent;
+  } else{
+    calculator.operandTwo = +display.textContent;
+  }
 }
 
 function clearDisplay(){
   display.textContent = "0";
   enterFirstNumber = false;
+  calculator.resetCalculator();
 }
 
 function addOperation(e){
-  calculator.operandOne = +display.textContent;
+  if (calculator.operandTwo !== null){
+    calculator.operandOne = calculator.equals();
+    calculator.operandTwo = null;
+    display.textContent = calculator.equals();
+  } 
   calculator.operator = e.target.textContent;
   enterFirstNumber = false;
 }
 
-function calculateResult() {
-  calculator.operandTwo = +display.textContent;
+function showResult() {
   display.textContent = calculator.equals();
 }
 
