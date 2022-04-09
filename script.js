@@ -3,9 +3,11 @@ const display = document.querySelector(".display");
 const clearButton = document.querySelector(".clear");
 const operationButtons = document.querySelectorAll(".operation");
 const equalsButton = document.querySelector(".equals");
+const backspaceButton = document.querySelector(".backspace");
+
 let enterFirstNumber = null;
-let allowableChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0","Enter", "/", "*", "-", "+", "=", "^", "."];
-let operatorChars = "+-*/^"
+let allowableChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0","Enter", "/", "*", "-", "+", "=", "^", ".", "Backspace", "Delete"];
+let operatorChars = "+-*/^";
 
 const calculator = {
   operandOne:null, 
@@ -50,7 +52,6 @@ const calculator = {
           return this.power();
           break;  
       }
-
   },
   resetCalculator(){
     this.operandOne = null;
@@ -68,6 +69,7 @@ numbers.forEach(number=>number.addEventListener("click", numberPressed));
 operationButtons.forEach(operation=>operation.addEventListener("click", addOperation));
 equalsButton.addEventListener("click", showResult);
 document.addEventListener("keydown", keyPressed);
+backspaceButton.addEventListener("click", removeRightChar);
 
 function numberPressed(e) {
   if (enterFirstNumber !== true){
@@ -122,20 +124,35 @@ function showResult() {
   } else{
     display.textContent = calculator.equals();
   }
-  
+}
+
+function removeRightChar() {
+  display.textContent = display.textContent.slice(0,-1);
+  if (display.textContent === ""){
+    display.textContent = "0";
+    enterFirstNumber = false;
+  }
 }
 
 function keyPressed(e) {
   if (!allowableChars.includes(e.key)){
-    return
+    return;
   }
   if (operatorChars.includes(e.key)){
     addOperation(e);
-    return
+    return;
   }
   if (e.key === "Enter"){
     showResult()
-    return
+    return;
+  }
+  if (e.key === "Backspace"){
+    removeRightChar();
+    return;
+  }
+  if (e.key === "Delete"){
+    clearDisplay();
+    return;
   }
   if (enterFirstNumber !== true){
     display.textContent = "";
