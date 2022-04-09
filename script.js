@@ -28,6 +28,10 @@ const calculator = {
     this.result = this.operandOne / this.operandTwo;
     return this.result;
   },
+  power(){
+    this.result = this.operandOne ** this.operandTwo;
+    return this.result;
+  },
   equals(){
     switch (this.operator) {
       case "+":
@@ -42,6 +46,9 @@ const calculator = {
       case "÷":
         return this.divide();
         break;
+      case "^":
+          return this.power();
+          break;  
       }
 
   },
