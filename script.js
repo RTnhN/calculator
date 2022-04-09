@@ -4,7 +4,8 @@ const clearButton = document.querySelector(".clear");
 const operationButtons = document.querySelectorAll(".operation");
 const equalsButton = document.querySelector(".equals");
 let enterFirstNumber = null;
-
+let allowableChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0","Enter", "/", "*", "-", "+", "=", "^", "."];
+let operatorChars = "+-*/^"
 
 const calculator = {
   operandOne:null, 
@@ -59,6 +60,7 @@ clearButton.addEventListener("click", clearDisplay);
 numbers.forEach(number=>number.addEventListener("click", numberPressed));
 operationButtons.forEach(operation=>operation.addEventListener("click", addOperation));
 equalsButton.addEventListener("click", showResult);
+document.addEventListener("keydown", keyPressed);
 
 function numberPressed(e) {
   if (enterFirstNumber !== true){
@@ -91,7 +93,17 @@ function addOperation(e){
     calculator.operandTwo = null;
     display.textContent = calculator.equals();
   } 
-  calculator.operator = e.target.textContent;
+  if (e.type === "click"){
+    calculator.operator = e.target.textContent;
+  } else{
+    if (e.key === "*"){
+      calculator.operator +="×";
+    } else if (e.key === "/"){
+      calculator.operator +="×";
+    } else {
+      calculator.operator = e.key;
+    }
+  }
   enterFirstNumber = false;
 }
 
@@ -106,3 +118,32 @@ function showResult() {
   
 }
 
+function keyPressed(e) {
+  if (!allowableChars.includes(e.key)){
+    return
+  }
+  if (operatorChars.includes(e.key)){
+    addOperation(e);
+    return
+  }
+  if (e.key === "Enter"){
+    showResult()
+    return
+  }
+  if (enterFirstNumber !== true){
+    display.textContent = "";
+    enterFirstNumber = true;
+  };  
+  if (display.textContent.includes(".") && e.key==="."){
+    return
+  }
+  if (display.textContent === "" && e.key==="."){
+    display.textContent = "0";
+  };  
+  display.textContent += e.key;
+  if (calculator.operator === null){
+    calculator.operandOne = +display.textContent;
+  } else{
+    calculator.operandTwo = +display.textContent;
+  }
+}
