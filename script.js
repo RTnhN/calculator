@@ -40,7 +40,8 @@ const calculator = {
         break;
       case "÷":
         return this.divide();
-        break;}
+        break;
+      }
 
   },
   resetCalculator(){
@@ -48,6 +49,9 @@ const calculator = {
     this.operandTwo = null;
     this.operator = null;
     this.result = null;
+  },
+  readyForCalculations(){
+    return (this.operandOne !== null && this.operandTwo !== null && this.operator !== null)
   }
 } 
 
@@ -92,6 +96,13 @@ function addOperation(e){
 }
 
 function showResult() {
-  display.textContent = calculator.equals();
+  if (!calculator.readyForCalculations()){
+    display.textContent = "ERROR";
+    calculator.resetCalculator();
+    enterFirstNumber = false;
+  } else{
+    display.textContent = calculator.equals();
+  }
+  
 }
 
