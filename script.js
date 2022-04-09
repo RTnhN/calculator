@@ -78,7 +78,9 @@ plusMinusButton.addEventListener("click", changeSign);
 function numberPressed(e) {
   if (validNumberEntered !== true){
     display.textContent = "";
-    validNumberEntered = true;
+    if (e.target.textContent !=="0"){
+      validNumberEntered = true;
+    }
   };  
   if (display.textContent.includes(".") && e.target.textContent==="."){
     return
