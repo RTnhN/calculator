@@ -61,7 +61,13 @@ function numberPressed(e) {
     display.textContent = "";
     enterFirstNumber = true;
   };  
-  display.textContent += +e.target.textContent;
+  if (display.textContent.includes(".") && e.target.textContent==="."){
+    return
+  }
+  if (display.textContent === "" && e.target.textContent==="."){
+    display.textContent = "0";
+  };
+  display.textContent += e.target.textContent;
   if (calculator.operator === null){
     calculator.operandOne = +display.textContent;
   } else{
