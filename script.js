@@ -116,7 +116,7 @@ function addOperation(e){
     if (e.key === "*"){
       calculator.operator ="×";
     } else if (e.key === "/"){
-      calculator.operator ="×";
+      calculator.operator ="÷";
     } else {
       calculator.operator = e.key;
     }
