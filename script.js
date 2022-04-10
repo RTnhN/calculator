@@ -83,12 +83,18 @@ function numberPressed(e) {
       validNumberEntered = true;
     }
   };  
+  if (display.clientWidth > 300){
+    return;
+  }
   if (display.textContent.includes(".") && e.target.textContent==="."){
     return
   }
   if (display.textContent === "" && e.target.textContent==="."){
     display.textContent = "0";
   };
+  if (calculator.result !== null){
+    calculator.resetCalculator();
+  }
   display.textContent += e.target.textContent;
   if (calculator.operator === null){
     calculator.operandOne = +display.textContent;
@@ -132,6 +138,11 @@ function showResult() {
     validNumberEntered = false;
   } else{
     display.textContent = calculator.equals();
+    if (display.clientWidth > 300){
+      display.textContent = calculator.equals().toExponential(6)
+    }
+    validNumberEntered = false;
+    
   }
   operationButtons.forEach(operator=> operator.classList.remove("pressedOperation"))
 }
@@ -178,6 +189,9 @@ function keyPressed(e) {
   if (display.textContent === "" && e.key==="."){
     display.textContent = "0";
   };  
+  if (calculator.result !== null){
+    calculator.resetCalculator();
+  }
   display.textContent += e.key;
   if (calculator.operator === null){
     calculator.operandOne = +display.textContent;
