@@ -1,5 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@100&display=swap');
+
 body{
+  height: 100vh;
   display:flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Anek Tamil', sans-serif;
+  background-color: black;
+}
+.calculatorBody{
+  max-width: 200px;
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto repeat(4, 1fr);
+  grid-gap: 7px;
+  grid-template-areas:
+  "display display display display display"
+  "plusMinus seven eight nine divide" 
+  "clear four five six multiply"
+  "back one two three subtract"
+  "equals zero dot percent add";
+  background-color: black;
+  padding: 10px;
+}
+
+.display{
+  grid-area: display;
+  justify-self: end;
+  color: white;
+  font-size: 40px;
+}
+
+button{
+  justify-self: center;
+}
+
+.number, .percent, .operation, .miscFunc{
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 15px;
+}
+
+.number, .percent{
+  background-color:darkslategrey;
+  color: white;
+}
+
+.operation{
+  background-color:orange;
+  color: white;
+}
+
+
+.miscFunc{
+  background-color:lightgrey;
+  color: black;
 }
