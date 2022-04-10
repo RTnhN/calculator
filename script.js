@@ -114,7 +114,8 @@ function addOperation(e){
   if (calculator.operandTwo !== null){
     calculator.operandOne = calculator.equals();
     calculator.operandTwo = null;
-    display.textContent = calculator.equals();
+    display.textContent = calculator.result;
+    calculator.result = null;
   } 
   if (e.type === "click"){
     calculator.operator = e.target.textContent;
