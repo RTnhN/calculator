@@ -52,7 +52,7 @@ button{
 }
 
 .number, .percent{
-  background-color:darkslategrey;
+  background-color:rgb(49, 49, 49);
   color: white;
 }
 
@@ -77,7 +77,7 @@ button{
 }
 
 .releasedNumber{
-  background-color: darkslategrey;
+  background-color: rgb(49, 49, 49);
   transition: background-color 0.4s;
 }
 
