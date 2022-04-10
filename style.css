@@ -62,3 +62,26 @@ button{
   background-color:lightgrey;
   color: black;
 }
+
+.pressedOperation{
+  background-color:white;
+  color: orange;
+}
+
+.pressedNumber{
+  background-color: lightslategray;
+}
+
+.releasedNumber{
+  background-color: darkslategrey;
+  transition: background-color 0.4s;
+}
+
+.pressedFunc{
+  background-color: white;
+}
+
+.releasedFunc{
+  background-color: lightgrey;
+  transition: background-color 0.4s;
+}

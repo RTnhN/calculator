@@ -6,6 +6,7 @@ const equalsButton = document.querySelector(".equals");
 const backspaceButton = document.querySelector(".backspace");
 const percentButton = document.querySelector(".percent");
 const plusMinusButton = document.querySelector(".plusMinus");
+const miscFuncs = document.querySelectorAll(".miscFunc");
 
 let validNumberEntered = null;
 let allowableChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0","Enter", "/", "*", "-", "+", "=", "^", ".", "Backspace", "Delete","%"];
@@ -100,6 +101,7 @@ function clearDisplay(){
   display.textContent = "0";
   validNumberEntered = false;
   calculator.resetCalculator();
+  operationButtons.forEach(operator=> operator.classList.remove("pressedOperation"))
 }
 
 function addOperation(e){
@@ -119,6 +121,7 @@ function addOperation(e){
       calculator.operator = e.key;
     }
   }
+  updateOperatorColor(calculator.operator)
   validNumberEntered = false;
 }
 
@@ -130,6 +133,7 @@ function showResult() {
   } else{
     display.textContent = calculator.equals();
   }
+  operationButtons.forEach(operator=> operator.classList.remove("pressedOperation"))
 }
 
 function removeRightChar() {
@@ -200,4 +204,47 @@ function changeSign(){
   } else{
     calculator.operandTwo = +display.textContent;
   }
+}
+
+function updateOperatorColor(operator){
+  operationButtons.forEach(operator=> operator.classList.remove("pressedOperation"))
+  switch (operator) {
+    case "+":
+      operationButtons[3].classList.add("pressedOperation")
+      break;
+    case "-":
+      operationButtons[2].classList.add("pressedOperation")
+      break;
+    case "×":
+      operationButtons[1].classList.add("pressedOperation")
+      break;
+    case "÷":
+      operationButtons[0].classList.add("pressedOperation")
+      break;
+    }
+}
+
+
+numbers.forEach(number=>number.addEventListener("mousedown", numPressedColor));
+numbers.forEach(number=>number.addEventListener("mouseup", numReleasedColor));
+
+function numPressedColor(e){
+  e.target.classList.remove("releasedNumber");
+  e.target.classList.add("pressedNumber");
+}
+function numReleasedColor(e){
+  e.target.classList.add("releasedNumber");
+  e.target.classList.remove("pressedNumber");
+}
+
+miscFuncs.forEach(func=>func.addEventListener("mousedown", funcPressedColor));
+miscFuncs.forEach(func=>func.addEventListener("mouseup", funcReleasedColor));
+
+function funcPressedColor(e){
+  e.target.classList.remove("releasedFunc");
+  e.target.classList.add("pressedFunc");
+}
+function funcReleasedColor(e){
+  e.target.classList.add("releasedFunc");
+  e.target.classList.remove("pressedFunc");
 }
