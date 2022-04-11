@@ -6,7 +6,6 @@
 
 body{
   height: 100vh;
-  width: 100vw;
   display:flex;
   align-items: center;
   justify-content: center;
@@ -27,13 +26,15 @@ body{
   "zero dot percent equals";
   background-color: black;
   padding: 10px;
+  width: 500px;
+
 }
 
 .display{
   grid-area: display;
   justify-self: end;
   color: white;
-  font-size: 40px;
+  font-size: min(12vw, 67px);
 }
 
 button{
@@ -43,12 +44,12 @@ button{
 }
 
 .number, .percent, .orange, .miscFunc{
-  width: 60px;
-  height: 60px;
+  width: 100%;
+  aspect-ratio: 1/1;
   border: none;
-  border-radius: 30px;
+  border-radius: 100%;
   font-family: 'Anek Tamil', sans-serif;
-  font-size: 20px;
+  font-size: min(7vw, 40px);
   font-weight: 700;
 }
 
