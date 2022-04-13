@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@100&family=Roboto:wght@100;300;400;500&display=swap');
 
 * {
   touch-action: none;
@@ -9,7 +9,7 @@ body{
   display:flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Anek Tamil', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: black;
 }
 .calculatorBody{
@@ -36,6 +36,7 @@ body{
   justify-self: end;
   color: white;
   font-size: min(14vw, 67px);
+  font-weight: 300;
 }
 
 button{
@@ -49,9 +50,8 @@ button{
   aspect-ratio: 1/1;
   border: none;
   border-radius: 100%;
-  font-family: 'Anek Tamil', sans-serif;
   font-size: min(7vw, 40px);
-  font-weight: 700;
+  font-weight: 300;
 }
 
 .number, .percent{
