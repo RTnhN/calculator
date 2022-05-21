@@ -203,6 +203,12 @@ function keyPressed(e) {
 
 function calculatePercent() {
   display.textContent = +display.textContent/100;
+  if (calculator.operandTwo !== null){
+    calculator.operandTwo = calculator.operandTwo/100;
+  } else {
+    calculator.operandOne = calculator.operandOne/100;
+  }
+
 }
 
 function changeSign(){
