@@ -4,26 +4,27 @@
   touch-action: none;
 }
 
-body{
+body {
   height: 100vh;
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
   background-color: black;
 }
-.calculatorBody{
-  display:grid;
+
+.calculatorBody {
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto repeat(5, 1fr);
   grid-gap: 7px;
   grid-template-areas:
-  "display display display display"
-  "clear backspace plusMinus divide"
-  "seven eight nine multiply"
-  "four five six subtract"
-  "one two three add"
-  "zero dot percent equals";
+    "display display display display"
+    "clear backspace plusMinus divide"
+    "seven eight nine multiply"
+    "four five six subtract"
+    "one two three add"
+    "zero dot percent equals";
   background-color: black;
   padding: 40px 10px;
   width: 500px;
@@ -31,7 +32,7 @@ body{
 
 }
 
-.display{
+.display {
   grid-area: display;
   justify-self: end;
   color: white;
@@ -39,13 +40,16 @@ body{
   font-weight: 300;
 }
 
-button{
+button {
   justify-self: center;
   align-self: flex-end;
-  padding-top:7px;
+  padding-top: 7px;
 }
 
-.number, .percent, .orange, .miscFunc{
+.number,
+.percent,
+.orange,
+.miscFunc {
   width: 100%;
   aspect-ratio: 1/1;
   border: none;
@@ -54,41 +58,42 @@ button{
   font-weight: 300;
 }
 
-.number, .percent{
-  background-color:rgb(49, 49, 49);
+.number,
+.percent {
+  background-color: rgb(49, 49, 49);
   color: white;
 }
 
-.orange{
-  background-color:orange;
+.orange {
+  background-color: orange;
   color: white;
 }
 
 
-.miscFunc{
-  background-color:lightgrey;
+.miscFunc {
+  background-color: lightgrey;
   color: black;
 }
 
-.pressedOperation{
-  background-color:white;
+.pressedOperation {
+  background-color: white;
   color: orange;
 }
 
-.pressedNumber{
+.pressedNumber {
   background-color: lightslategray;
 }
 
-.releasedNumber{
+.releasedNumber {
   background-color: rgb(49, 49, 49);
   transition: background-color 0.4s;
 }
 
-.pressedFunc{
+.pressedFunc {
   background-color: white;
 }
 
-.releasedFunc{
+.releasedFunc {
   background-color: lightgrey;
   transition: background-color 0.4s;
 }
