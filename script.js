@@ -72,7 +72,13 @@ const calculator = {
       this.operandTwo = value;
     }
   },
-  }
+  calculatePercent() {
+    if (this.operator === null) {
+      this.operandOne = this.operandOne / 100;
+    } else {
+      this.operandTwo = this.operandTwo / 100;
+    }
+}
 }
 
 clearButton.addEventListener("click", clearDisplay);
@@ -209,12 +215,7 @@ function keyPressed(e) {
 
 function calculatePercent() {
   display.textContent = +display.textContent / 100;
-  if (calculator.operandTwo !== null) {
-    calculator.operandTwo = calculator.operandTwo / 100;
-  } else {
-    calculator.operandOne = calculator.operandOne / 100;
-  }
-
+  calculator.calculatePercent();
 }
 
 function changeSign() {
