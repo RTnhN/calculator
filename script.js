@@ -64,6 +64,14 @@ const calculator = {
   },
   readyToCalculate() {
     return (this.operandOne !== null && this.operandTwo !== null && this.operator !== null);
+  },
+  updateOperand(value) {
+    if (this.operator === null) {
+      this.operandOne = value;
+    } else {
+      this.operandTwo = value;
+    }
+  },
   }
 }
 
@@ -96,11 +104,7 @@ function numberPressed(e) {
     calculator.resetCalculator();
   }
   display.textContent += e.target.textContent;
-  if (calculator.operator === null) {
-    calculator.operandOne = +display.textContent;
-  } else {
-    calculator.operandTwo = +display.textContent;
-  }
+  calculator.updateOperand(+display.textContent);
 }
 
 function clearDisplay() {
@@ -154,6 +158,7 @@ function removeRightChar() {
     display.textContent = "0";
     validNumberEntered = false;
   }
+  calculator.updateOperand(+display.textContent);
 
 }
 
@@ -221,11 +226,7 @@ function changeSign() {
   } else {
     display.textContent = display.textContent.substring(1);
   }
-  if (calculator.operator === null) {
-    calculator.operandOne = +display.textContent;
-  } else {
-    calculator.operandTwo = +display.textContent;
-  }
+  calculator.updateOperand(+display.textContent);
 }
 
 function updateOperatorColor(operator) {
