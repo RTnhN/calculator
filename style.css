@@ -92,3 +92,9 @@ button{
   background-color: lightgrey;
   transition: background-color 0.4s;
 }
+
+@media(max-width: 400px) {
+  body {
+    align-items: flex-end;
+  }
+}

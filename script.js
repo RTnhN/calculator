@@ -272,9 +272,3 @@ function funcReleasedColor(e) {
   e.target.classList.add("releasedFunc");
   e.target.classList.remove("pressedFunc");
 }
-
-if (window.innerWidth > 500) {
-  document.body.style.alignItems = "center";
-} else {
-  document.body.style.alignItems = "flex-end";
-}
